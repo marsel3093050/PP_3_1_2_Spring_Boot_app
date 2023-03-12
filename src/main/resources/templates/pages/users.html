@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>List users</title>
+  <style>
+    #table-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    table {
+      width: 70%;
+    }
+    th.id-column, td.id-column {
+      width: 5%;
+    }
+  </style>
+
+</head>
+<body>
+
+<div id="table-container">
+
+  <table bgcolor="#e0fff3" border="3">
+
+    <caption>
+      <h3>List peoples</h3>
+    </caption>
+    <tr>
+      <th class="id-column"> id </th>
+      <th> name </th>
+      <th> surname </th>
+      <th> email </th>
+      <th> update </th>
+      <th> delete </th>
+
+    <tr th:each="user: ${users}">
+
+      <td class="id-column" style="text-align: center"  th:text="${user.getId()}"></td>
+
+      <td style="text-align: center" th:text="${user.getFirstName()}"></td>
+
+      <td style="text-align: center"  th:text="${user.getLastName()}"></td>
+
+      <td style="text-align: center" th:text="${user.getEmail()}"></td>
+
+      <td>
+      <a style="text-align: center" th:href="@{/users/{id}/edit(id=${user.getId()})}" th:text="update">us</a>
+      </td>
+
+      <td>
+        <a style="text-align: center" th:href="@{/users/del{idDelete}(idDelete=${user.getId()})}" th:text="delete">us</a>
+      </td>
+
+    </tr>
+
+    <tr>
+      <td class="empty-row" colspan="6">
+        <a href="/users/new">Create new user</a>
+      </td>
+    </tr>
+
+  </table>
+
+</div>
+
+<br/>
+<hr/>
+
+</body>
+</html>
+
+
+
+
